@@ -93,14 +93,5 @@ public class MemberService {
 		
 	}
 	
-	@Transactional
-	public MessageVO mesdetail(MessageVO msVO) {
-		int num = mbDao.updatread(msVO);
-		if(num == 1) {
-			msVO = mbDao.getMessDetail(msVO);
-		} else {
-			msVO = mbDao.getMessDetail(msVO);
-		}
-		return msVO;
-	}
+	
 }
