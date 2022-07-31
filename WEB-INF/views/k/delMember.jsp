@@ -26,36 +26,40 @@
 	<div class="w3-content w3-center main">
 		<h1 class="w3-text-indigo w3-padding w3-border-bottom "><b>${SID} 회원탈퇴</b></h1>
 		<form method="POST" action="" name="frm" id="frm" class="w3-col w3-margin-top w3-border w3-margin-bottom w3-text-grey w3-padding">
-			<input type="hidden" id="mecerti" name="mecerti" >
 			<input type="hidden" id="id" name="id" value="${SID}">
 			
 			<div class="w3-margin-top w3-content">
-				<label for="pw" class="w3-col s3 w3-right-align w3-large">비밀번호 : </label>
+				<label for="dname" class="w3-col s3 w3-right-align w3-large">이름 : </label>
 				<div class="w3-col m8">
-					<input type="password" name="pw" id="pw" class="w3-margin-bottom w3-margin-left w3-col w3-input w3-border w3-round-medium"
+					<input type="text" name="dname" id="dname" class="w3-margin-bottom w3-margin-left w3-col w3-input w3-border w3-round-medium"
+									placeholder="이름을 입력하세요">
+				</div>
+			</div>
+			
+			<div class="w3-margin-top w3-content">
+				<label for="dpw" class="w3-col s3 w3-right-align w3-large">비밀번호 : </label>
+				<div class="w3-col m8">
+					<input type="password" name="dpw" id="dpw" class="w3-margin-bottom w3-margin-left w3-col w3-input w3-border w3-round-medium"
 									placeholder="비밀번호를 입력하세요">
 				</div>
 			</div>
 			<div class="w3-margin-top w3-content">
-				<label for="repw" class="w3-col s3 w3-right-align w3-large">비밀번호 확인 : </label>
+				<label for="drepw" class="w3-col s3 w3-right-align w3-large">비밀번호 확인 : </label>
 				<div class="w3-col m8">
-					<input type="password" id="repw" class="w3-margin-bottom w3-margin-left w3-col w3-input w3-border w3-round-medium">
+					<input type="password" id="drepw" class="w3-margin-bottom w3-margin-left w3-col w3-input w3-border w3-round-medium">
 					<span class="w3-col w3-text-red w3-center w3-margin-bottom" id="repwmsg">비밀번호 체크 처리 메세지</span>
 				</div>
 			</div>
-			<div class="w3-margin-top w3-contents">
-				<div id="mecertifi" class="w3-quarter w3-button w3-col w3-indigo mar">본인인증</div>
-			</div>
 		</form>
 		<div class="w3-content w3-center main">
-			<h4 class="w3-margin-bottom w3-center ">
+			<h6 class="w3-margin-bottom w3-center ">
 			탈퇴 후에는 [ID ${SID}] 로 다시 가입할 수 없으며 아이디와 데이터는 복구 할 수 없습니다.
 			<br>
 			게시판형 서비스에 남아있는 게시글은 탈퇴 후 삭제 할 수 없습니다.
-			</h4>
+			</h6>
 		</div>
 		<div >
-			<input type="radio" name="delete" id="delete" class="w3-radio" value="delete"> <label for="delete"> <b class="w3-large">안내 사항을 모두 확인하였으며, 이에 동의합니다.</b></label>
+			<input type="radio" name="delete" id="delete" class="w3-radio" value="delete"> <label for="delete"> <b class="w3-midium">안내 사항을 모두 확인하였으며, 이에 동의합니다.</b></label>
 		</div>
 		<div class="w3-col w3-margin-top" id="delbox">
 			<div class="w3-button w3-indigo w3-large w3-text-white w3-hover-grey" id="dbtn">탈퇴하기</div>
