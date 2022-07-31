@@ -87,32 +87,33 @@
 	
 	
 	<!-- 컬렉션 검색 조회 목록 -->
-	<select id="getColList" resultType="sVO" parameterType="sVO">
-			SELECT 
-    			cno, cname, id, savename, descr
-			FROM
-			    (
-			     SELECT
-			            ROWNUM rno, cno, cname, id, savename,  descr
-			        FROM
-			        (
-			            SELECT
-			                c.cno cno, cname, id, savename,  NVL(descr, 'no') descr
-			            FROM
-			                collection c, member m, imgfile f
-			            WHERE
-			                c.mno = m.mno
-							AND c.cno = f.cno(+)
-			                AND m.isshow = 'Y'
-			                AND c.isshow = 'Y'
-			                AND f.whereis(+) = 'C'
-			                AND cname LIKE '%'|| #{search} || '%'
-			                ORDER BY c.cno DESC
-			        )
-			    )
-			WHERE
-			    rno BETWEEN #{startCont} AND #{endCont}
- 	</select>
+   <select id="getColList" resultType="sVO" parameterType="sVO">
+         SELECT 
+             cno, cname, id, savename, descr
+         FROM
+             (
+              SELECT
+                     ROWNUM rno, cno, cname, id, savename,  descr
+                 FROM
+                 (
+                     SELECT
+                         c.cno cno, cname, id, savename,  NVL(descr, 'no') descr
+                     FROM
+                         collection c, member m, imgfile f
+                     WHERE
+                         c.mno = m.mno
+                     AND c.cno = f.cno(+)
+                         AND m.isshow IN ('Y','R')
+                         AND c.isshow = 'Y'
+                         AND f.whereis(+) = 'C'
+                         AND f.isshow(+) = 'C'
+                         AND cname LIKE '%'|| #{search} || '%'
+                         ORDER BY c.cno DESC
+                 )
+             )
+         WHERE
+             rno BETWEEN #{startCont} AND #{endCont}
+    </select>
  		
  	<!-- 게시물 검색 조회 목록 -->
 	<select id="getBoList" resultType="sVO" parameterType="sVO">
@@ -143,7 +144,7 @@
  	</select>
  	
  	<!--  장르 디테일 조회 -->
- 	<select id="gnrList" resultType="sVO">
+ 	<select id="getgnrList" resultType="sVO">
  		SELECT
 		    gno, gname
 		FROM
@@ -203,7 +204,17 @@
 		   #{mgno}, #{id}, #{recvid}, #{title} ,#{body}
 		   )
 	</insert>
-	
+	<!-- 수신메세지/발신메세지 확인 -->
+	<select id="whomess" resultType="int" parameterType="msVO">
+		 SELECT  
+           COUNT(*) cnt
+          FROM
+            message
+          WHERE
+            mgno = #{mgno}
+		    AND recvid = #{id}
+	</select>
+
 	<!-- 상세보기 클릭시 읽음처리 -->
 	<update id="readmess" parameterType="msVO">
 		UPDATE
