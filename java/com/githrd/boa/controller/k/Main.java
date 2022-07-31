@@ -64,30 +64,33 @@ public class Main {
 	}
 	
 	@RequestMapping("/search.boa")
-	public ModelAndView serch(ModelAndView mv, String search, SearchVO sVO, PageUtil page, String sel) {
-			
-		String str = "col";
-		int totalCount = mbDao.getTotal(sVO);
-		page.setPage(totalCount);
-		
-		sVO.setStartCont(page.getStartCont());
-		sVO.setEndCont(page.getEndCont());
-		sVO.setSel(sel);
-		sVO.setSearch(search);
-		
-		if(str.equals(sel)) {
-			List<SearchVO> list = mbDao.getColList(sVO);
-			mv.addObject("LIST", list);
-		} else  {
-			List<SearchVO> blist = mbDao.getBoList(sVO);
-			mv.addObject("BLIST", blist);
-		}
-			 mv.addObject("PAGE", page);
-			 mv.setViewName("k/search"); 
-		
-		return mv;
-	
-	}
+    public ModelAndView serch(ModelAndView mv, String search, SearchVO sVO, PageUtil page, String sel) {
+          
+       String str = "col";
+       
+       int totalCount = mbDao.getTotal(sVO);
+       page.setPage(page.getNowPage(),totalCount);
+       
+       sVO.setStartCont(page.getStartCont());
+       sVO.setEndCont(page.getEndCont());
+       sVO.setSel(sel);
+       sVO.setSearch(search);
+       
+       if(str.equals(sel)) {
+          List<SearchVO> list = mbDao.getColList(sVO);
+          mv.addObject("LIST", list);
+       } else  {
+          List<SearchVO> blist = mbDao.getBoList(sVO);
+          mv.addObject("BLIST", blist);
+       }
+       
+       mv.addObject("PAGE", page);
+       mv.setViewName("k/search"); 
+       
+       mv.addObject("SEL", sel);
+       return mv;
+    
+    }
 	
 	@RequestMapping("/receive.boa")
 	@ResponseBody
@@ -130,7 +133,11 @@ public class Main {
 	@RequestMapping("/messDetail.boa")
 	@ResponseBody
 	public MessageVO messDetail (MessageVO msVO){
-		msVO = mSrvc.mesdetail(msVO);
+		int who = mbDao.whomess(msVO);
+		if(who == 1){
+			mbDao.updatread(msVO);
+		} 
+		msVO = mbDao.getMessDetail(msVO);
 		return msVO;
 	}
 	
