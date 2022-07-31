@@ -74,7 +74,12 @@ public class MainBoardDao {
 		return sqlSession.insert("maSQL.sendMess", msVO);
 	}
 	
-	// 쪽지 상제보기
+	// 수신쪽지인지 조회
+	public int whomess(MessageVO msVO) {
+		return sqlSession.selectOne("maSQL.whomess", msVO);
+	}
+	
+	// 쪽지 상제보기 읽음처리
 	public int updatread(MessageVO msVO) {
 		return sqlSession.update("maSQL.readmess", msVO);
 	}
