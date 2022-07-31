@@ -86,6 +86,21 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});	
 	
+	// 비밀번호 정규 표현식
+	$('#pw').change(function(){
+		var spw = $('#pw').val();
+		var pwPat = /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,15}$/;
+	
+		var pwResult = pwPat.test(spw);
+		if(!pwResult){
+		$('#id01').css('display', 'block');
+		$('#me').html('비밀번호를 다시 입력하세요');
+		$('#pw').val('');
+		}
+	
+	});
+	
+	
 	// 비밀번호 일치 확인
 	$('#repw').keyup(function(){
 		var spw = $('#pw').val();
@@ -104,18 +119,13 @@ $(document).ready(function(){
 	});
 	
 	//-------------------------------------------------------------------------------
-	
-	$('#mecertifi, #repw').css('display','none');
-	
-	$('#pw').keyup(function(){
-		 $('#repw').css('display','block');
-	});
-	
+	// 탈퇴
 	
 
+
 	// 비밀번호 일치시 본인인증 창 노출
-	$('#repw').blur(function(){
-		var spw = $('#repw').val();
+	$('#drepw').blur(function(){
+		var spw = $('#drepw').val();
 		var sid = $('#id').val();
 		
 		$.ajax({
@@ -129,10 +139,12 @@ $(document).ready(function(){
 			success : function(data){
 				var result = data.ck
 				if(result == 'OK'){
-					$('#mecertifi').css('display', 'block');
+					$('#delete').focus();
 				}else{
 					$('#id01').css('display', 'block');
 					$('#me').html('회원가입시 사용한 비밀번호로 입력해주세요');
+					$('#drepw').val('');
+					$('#dpw').val('');
 				}
 			},
 			error: function(){
@@ -142,36 +154,9 @@ $(document).ready(function(){
 	});
 	
 	
-	// 본인인증
-	$('#mecertifi').click(function(){
-		var IMP = window.IMP; 
-		IMP.init('imp53161363'); 
-
-		var sname = $('#dname').val();
-		var stel = $('#dtel').val();
-		
-		 IMP.certification({
-			 popup : true 
-		 }, function (rsp) { 
-			 if ( rsp.success ) {
-		         // 인증성공
-		         $('#mecerti').val('Y');
-			  } else {
-			         // 인증취소 또는 인증실패
-			        var msg = '인증에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			 
-			        alert(msg);
-			        $('#certi').prop('disabled', true);
-			        $('frm').attr('action', '/boa/member/delMember.boa');
-			        $('#frm').submit();
-			    }
-			});
-	});
-	
 	// 체크시 탈퇴 버튼 노출
 	$('#delete').click(function(){
-		var el = $('#dname, #dtel, #mecerti'); 
+		var el = $('#dname, #dpw'); 
 		for(var i = 0 ; i < el.length ; i++ ){
 			var txt = $(el).eq(i).val();
 			if(!txt){
@@ -184,12 +169,6 @@ $(document).ready(function(){
 		$('#delbox').css('display','block')
 	});
 
-
-	// 탈퇴 모달창
-	$('#dbtn').click(function(){
-		$('#delMo').css('display', 'block');
-	});
-	
 	// 탈퇴 처리 
 	$('#exit').click(function(){
 		
@@ -197,8 +176,11 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
+	$('#dbtn').click(function(){
+		$('#delMo').css('display', 'block');
+	});
+
 	$('#cancle').click(function(){
 		$('#delMo').css('display', 'none');
 	});
-
 });
