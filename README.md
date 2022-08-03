@@ -54,5 +54,5 @@
   - 찜/좋아요 기능
   -------------------------------------
   ##DB 모델링
-  ![image](https://user-images.githubusercontent.com/100174595/182540242-a8ed78b2-efdc-4653-bdcc-f5d1817062f7.png)
+  ![image](https://user-images.githubusercontent.com/100174595/182540544-82326e5d-ad2e-4f36-9209-8937e46ef387.png)
 
