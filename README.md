@@ -1,5 +1,5 @@
 # Boara! 자유로운 텍스트 기반 플랫폼
-- 전문성에 관계없이 누구나 자신의 창작물을 공유할 수 있는 프로그램
+목적 : 전문성에 관계없이 누구나 자신의 창작물을 공유할 수 있는 프로그램
 
   - 게시글 폴더 개념의 컬렉션 기능
   - 메인 페이지에서 게시글/컬렉션 검색, 추천 도서 기능
@@ -7,6 +7,14 @@
   - 포인트 충전으로 더욱 편리한 사이트 활동
   - 스포일러 댓글 기능으로 작품 내용 유출 방지
   - 회원들 사이의 소통을 증대시킬 쪽지 기능
+사용 기술 및 개발환경
+  
+  - O/S : Windows 10
+  - Server : Tomcat8.5
+  - DB : Orarcle 11g
+  - Framework/flatform : Spring, jQuery, mybatis
+  - Programming Language : JAVA, HTML, JavaScript
+  - API : interpark Developer, import Developer
 
 ## 역할 분배 현황
 ### 김소연
