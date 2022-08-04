@@ -13,8 +13,9 @@
   - O/S : Windows 10
   - Server : Tomcat8.5
   - DB : Orarcle 11g
-  - Framework/flatform : Spring, jQuery, mybatis
-  - Programming Language : JAVA, HTML, JavaScript
+  - Framework : Spring3.0
+  - Language/skills : JAVA, HTML, JavaScript, css, jQuery, ajax, jsp
+  - TOOL : eclipse
   - API : interpark Developer, import Developer
 
 ## 역할 분배 현황
