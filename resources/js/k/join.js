@@ -150,11 +150,8 @@ $(document).ready(function(){
 	});	
 	// join
 	$('#jbtn').click(function(){
-		// 데이터 유효성 검사
-
-	
-		
-		var el = $('#name, #id, #pw, #tel, #email, #file, #certi'); 
+		// 데이터 유효성 검사	
+		var el = $('#name, #id, #pw, #tel, #birth, #email, #file, #certi'); 
 		
 		for(var i = 0 ; i < el.length ; i++ ){
 			var txt = $(el).eq(i).val();
@@ -188,7 +185,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 				type : 'GET',
-				url : '/boa/member/certi.boa?email=' + email,
+				url : '/boa/member/joincerti.boa?email=' + email,
 				success : function (data) {
 					$('#certi').attr('disabled',false);
 					$('#code').val(data);
