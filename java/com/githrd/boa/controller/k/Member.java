@@ -101,21 +101,22 @@ public class Member {
 		int cnt = mDao.getLogin(mVO);
 		mVO.setCnt(cnt);
 		String view = "/boa/main.boa";
+	
 		if(vw != null) {
 			 view = vw;
 		}
-		
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());
-			
 			if(mVO.getId() != null) {
 				mDao.updateLo(mVO);
 			}
 		} else {
 			 view = "/boa/member/login.boa";
 		}
+		mv.setViewName(view);
 		mv.addObject("VIEW", view);
 		mv.addObject("NOWPAGE", nowPage);
+		
 		mv.setViewName("k/redirect");
 			return mv;
 	}	
@@ -407,11 +408,17 @@ public class Member {
 		return map;
 	}
 	
-	
+	// 휴면해제
 	@RequestMapping(value="/certi.boa", method= RequestMethod.GET)
 	@ResponseBody
 	public String certi(String email) {
 	return mailSrvc.humeonEmail(email);
-
+	}
+	
+	// 회원가입시
+	@RequestMapping(value="/joincerti.boa", method= RequestMethod.GET)
+	@ResponseBody
+	public String joincerti(String email) {
+	return mailSrvc.joinEmail(email);
 	}
 }
