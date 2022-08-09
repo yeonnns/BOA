@@ -11,10 +11,10 @@
 사용 기술 및 개발환경
   
   - O/S : Windows 10
-  - Server : Tomcat8.5
+  - Server : Tomcat 8.5.78
   - DB : Orarcle 11g
-  - Framework : Spring3.0
-  - Language/skills : JAVA, HTML, JavaScript, css, jQuery, ajax, jsp
+  - Framework : Spring 4.3.20 release
+  - Language/skills : JAVA 1.8, HTML5, JavaScript, css3, jQuery 3.6.0, ajax, jsp 2.3.1, mybatis 3.4.6
   - TOOL : eclipse
   - API : interpark Developer, import Developer
 
