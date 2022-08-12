@@ -32,7 +32,9 @@ public class MemberService {
 		FileVO fVO = new FileVO();
 		
 		String path = this.getClass().getResource("").getPath();
+		// /C:/class/spring/source/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/boara/WEB-INF/classes/com/githrd/boa/service/k/
 		path = path.substring(0, path.indexOf("/WEB-INF")) + "/resources/upload";
+		// /C:/class/spring/source/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/boara/resources/upload
 		
 		
 		// 파일크기
